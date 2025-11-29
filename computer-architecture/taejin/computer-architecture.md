@@ -31,6 +31,7 @@ ex) PC, IR, MAR...etc
 
 ## 2.2. Cache Memory
 CPU와 Main Memory 사이에 존재하며, L1, L2, L3 cache가 존재한다.
+(휘발성)
 
 - L1 Cache: CPU core 내부에 존재하며, 가장 빠른 캐시이다.
 - L2 Cache: CPU 코어 내부/인접하게 존재한다.
@@ -55,6 +56,42 @@ CPU에서 요청한 data가 Main Memory까지 가서 찾아오지 않고, 캐시
 
 그래서 코드를 작성할 때 캐시 친화적으로 작성해야하는 것이다. <br>
 (자세한 블로그 https://velog.io/@piopiop/%ED%96%89%EB%A0%AC%EA%B3%B1%EC%85%88-%EC%B5%9C%EC%A0%81%ED%99%94-%EA%B3%B5%EA%B0%84-%EC%A7%80%EC%97%AD%EC%84%B1%EC%9D%84-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%BA%90%EC%8B%9C-%EC%B9%9C%ED%99%94%EC%A0%81-%EC%BD%94%EB%93%9C-%EC%9E%91%EC%84%B1)
+
+## 2.3. Main Memory
+CPU가 직접 접근할 수 있는 메모리로, 현재 실행 중인 프로그램(Process)과 데이터가 저장되는 공간이다.
+(휘발성)
+
+- RAM (Random Access Memory): 어느 위치에 저장된 데이터든 접근하는 데 걸리는 시간이 동일하다.
+- DRAM: 주로 주기억장치로 쓰이며, 비용이 저렴하고 용량이 크다. (캐시는 주로 속도가 빠른 SRAM 사용)
+
+## 2.4. Secondary Storage 
+Main Memory는 비싸고 휘발성이기 때문에, 데이터를 영구적으로 보관하고 대용량으로 저장하기 위해 사용한다. (비휘발성) <br>
+CPU가 직접 접근할 수 없으며, 데이터를 Main Memory로 옮긴 후 처리해야 한다.
+
+### 2.4.1. HDD (Hard Disk Drive)
+- 방식: 자성 물질이 코팅된 원판(플래터)을 고속으로 회전시키며 헤드(바늘)로 데이터를 읽고 쓴다.
+- 특징: 물리적으로 회전하기 때문에 소음과 진동이 있고, 충격에 약하다.
+- 속도: 탐색 시간(Seek Time)과 회전 지연(Rotational Latency)이 발생하여 SSD보다 느리다.
+
+### 2.4.2. SSD (Solid State Drive)
+- 방식: 반도체(Flash Memory)를 이용하여 데이터를 전기적으로 저장한다.
+- 특징: 물리적으로 움직이는 부품이 없어 소음이 없고, 충격에 강하다.
+- 속도: HDD보다 데이터 입출력 속도가 훨씬 빠르며, 부팅 속도나 로딩 속도 향상에 큰 영향을 준다.
+
+## 2.5. I/O Devices
+컴퓨터 외부와 데이터를 교환하기 위한 장치들이다. 컴퓨터 내부(CPU/Memory) 속도에 비해 매우 느리다.
+
+- 입력 장치 (Input): 데이터를 컴퓨터 내부로 넣어주는 장치 (키보드, 마우스, 마이크 등)
+- 출력 장치 (Output): 컴퓨터 내부의 처리 결과를 사용자에게 보여주거나 들려주는 장치 (모니터, 스피커, 프린터 등)
+- I/O Controller: CPU와 I/O 장치 사이의 속도 차이와 통신 규격을 맞춰주는 중개자 역할을 한다.
+
+### 2.5.1. Device Driver
+I/O 장치를 물리적으로 연결하더라도, 운영체제(OS)가 이 장치를 어떻게 제어해야 할지 모르면 사용할 수 없다. 이때 필요한 것이 장치 드라이버이다. <br>
+OS 커널이 모든 장비의 제어 코드를 내장할 수 없으므로, 하드웨어 제조사에서 제공하는 드라이버를 통해 제어한다.
+
+- Ex:
+  - 그래픽 드라이버: Intel UHD Graphics Driver, NVIDIA GeForce Driver (설치하지 않으면 화면 해상도가 깨지거나 게임 성능이 안 나옴)
+  - 네트워크 드라이버: Realtek PCIe GbE Family Controller (설치하지 않으면 인터넷 연결 불가)
 
 # 3. CPU 구조
 
