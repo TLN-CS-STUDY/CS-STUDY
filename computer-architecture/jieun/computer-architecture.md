@@ -79,7 +79,7 @@ https://rangvest.tistory.com/entry/CPU%EC%9D%98-%EA%B5%AC%EC%A1%B0-%EB%B0%8F-%EC
 ISA(Instruction Set Architecture)는 CPU가 인식, 해석, 실행할 수 있는 명령어들의 모음이다. CPU가 작동하려면 프로그램이 있어야 하고 명령어를 주입해서 설계를 한다.
 ISA를 설계하고 구현하는데 있어서 대표적인 두 가지 컴퓨터 아키텍처가 CISC와 RISC이다.
 
-### 2.3.1. CISC(Complex Instruction Set Computing)와 RISC(Reduced Instruction Set Computing)
+### 2.3.1. CISC / RISC
 |CISC|RISC|
 |:----:|:----:|
 |복잡하고 다양한 명령어|단순하고 적은 명령어|
