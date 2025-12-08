@@ -6,7 +6,7 @@
 
 # 1. Array
 ## 1.1. Array 란?
-<img width="450" height="245" alt="Image" src="https://github.com/user-attachments/assets/e5c04dd6-5829-4e0b-a8f0-5a3593672034" />
+<img width="750" height="245" alt="Image" src="https://github.com/user-attachments/assets/e5c04dd6-5829-4e0b-a8f0-5a3593672034" />
 
 - 동일한 데이터 타입의 요소들을 연속된 메모리 공간에 저장하는 방법이다.
 - 배열을 구성하는 각각의 값을 요소(element), 배열에서 위치를 가리키는 숫자를 인덱스(index)라고 한다.
@@ -38,7 +38,7 @@
 * * *
 # 2. Linked List
 ## 2.1. Linked List 란?
-<img width="450" height="177" alt="Image" src="https://github.com/user-attachments/assets/8a903550-8232-4e02-aca5-15b7e65df428" />
+<img width="650" height="177" alt="Image" src="https://github.com/user-attachments/assets/8a903550-8232-4e02-aca5-15b7e65df428" />
 
 - 여러 개의 노드들이 순차적으로 연결된 형태이다.
 - 첫 번째 노드를 head, 마지막 노드를 tail이라고 한다.
@@ -53,12 +53,12 @@
 - 각 노드에 자료 공간과 한 개의 포인터 공간이 있고, 각 노드의 포인터는 다음 노드를 가리킨다.
 
 #### Doubly Linked Linear List
-<img width="450" height="86" alt="Image" src="https://github.com/user-attachments/assets/2646bb51-1a72-46e7-8a15-b7e67eb659ee" />
+<img width="650" height="86" alt="Image" src="https://github.com/user-attachments/assets/2646bb51-1a72-46e7-8a15-b7e67eb659ee" />
 
 - 단일 연결 리스트와 비슷하지만, 포인터 공간이 두 개가 있고 각 포인터는 앞 / 뒤 노드를 가리킨다.
 
 #### Circularyly Linked Linear List
-<img width="450" height="219" alt="Image" src="https://github.com/user-attachments/assets/9e1a5838-da4b-4e64-89fb-23af721100d9" />
+<img width="400" height="219" alt="Image" src="https://github.com/user-attachments/assets/9e1a5838-da4b-4e64-89fb-23af721100d9" />
 
 - 일반적인 Linked List에 마지막 노드와 처음 노드를 연결시켜 원형으로 만든 구조이다.
 
@@ -124,13 +124,14 @@
 
 ## 4.2. Queue의 구분
 #### Linear Queue
-<img width="450" height="196" alt="Image" src="https://github.com/user-attachments/assets/77ad70c6-1002-4b12-bcd9-e2810b855892" />
+<img width="850" height="196" alt="Image" src="https://github.com/user-attachments/assets/77ad70c6-1002-4b12-bcd9-e2810b855892" />
+
 - 선형 배열을 사용하여 구현된 Queue이다.
 - 삽입을 위해서는 계속해서 요소들을 이동시켜야 한다.
 - front/rear는 증가만 하는 방식으로, 실제로 front 앞 쪽에 공간이 있더라도 삽입할 수 없는 경우가 발생할 수 있다.
 
 #### Circular Queue
-<img width="450" height="1264" alt="Image" src="https://github.com/user-attachments/assets/9785dbb6-f32f-42d2-ab25-12e4e56a61b1" />
+<img width="650" height="1264" alt="Image" src="https://github.com/user-attachments/assets/9785dbb6-f32f-42d2-ab25-12e4e56a61b1" />
 
 - Linear Queue의 단점을 보완한 형태이다.
 - front는 첫 번째 요소 바로 앞을 rear는 마지막 요소를 가리킨다.
@@ -147,7 +148,7 @@
 - BFS 알고리즘
 - 데이터를 입력된 순서대로 처리해야 할 때 또는 프로세스 관리, 대기 순서 관리 등에 사용한다.
 
-### 4.4. 시간 복잡도
+## 4.4. 시간 복잡도
 - 삽입 / 삭제: O(1)
 * * *
 # 5. Deque
@@ -216,8 +217,11 @@
 - 탐색: O(1)
 - 삽입 / 삭제: O(1)
 - 데이터의 충돌이 자주 발생할 경우 O(n)이 될 수 있다.
-
+* * *
 ## 7. Tree
+## 7.1. Tree 란?
+- Node들이 나무가지처럼 연결된 비선형 계층적 자료구조이다.
+
 
 * * *
 **배열/연결리스트** <br>
@@ -230,5 +234,6 @@ https://velog.io/@nnnyeong/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%EC%8A%A4%ED%83%
 https://bigsong.tistory.com/32 <br>
 
 **해시테이블**
+https://mojing.tistory.com/entry/Data-Structure-%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%ED%95%B4%EC%8B%9C-%ED%85%8C%EC%9D%B4%EB%B8%94Hash-Table <br>
 
 
