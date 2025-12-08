@@ -1,9 +1,3 @@
-배열/연결리스트
-스택/큐/덱
-해시테이블
-트리
-힙
-
 # 1. Array
 ## 1.1. Array 란?
 <img width="750" height="245" alt="Image" src="https://github.com/user-attachments/assets/e5c04dd6-5829-4e0b-a8f0-5a3593672034" />
@@ -218,9 +212,64 @@
 - 삽입 / 삭제: O(1)
 - 데이터의 충돌이 자주 발생할 경우 O(n)이 될 수 있다.
 * * *
-## 7. Tree
+# 7. Tree
 ## 7.1. Tree 란?
-- Node들이 나무가지처럼 연결된 비선형 계층적 자료구조이다.
+- 부모-자식 관계의 노드들로 이루어져 있는 비선형 계층적 자료구조이다.
+- 하나의 루트 노드를 가지고, 루트 노드는 0개 이상의 자식 노드를 갖는다.
+- node들과 node들을 연결하는 edge들로 구성되어 있다.
+
+<img width="650" height="732" alt="Image" src="https://github.com/user-attachments/assets/d4d1e2c9-6419-4c71-96c3-f229e1f5d9c2" />
+
+- 루트 노드(root node): 부모가 없는 노드, 트리는 하나의 루트 노드만을 가진다.
+- 외부 노드(external node): 자식이 없는 노드이다. (= 단말 노드, leaf node)
+- 내부 노드(internal node): 자식 노드 하나 이상 가진 노드이다. (= 비단말 노드, branch node)
+- 간선(edge): 노드를 연결하는 선, 'link' 또는 'branch'라고도 부른다.
+- 형제(sibling): 같은 부모를 가지는 노드이다.
+- 깊이(depth): 루트에서 어떤 노드에 도달하기 위해 거쳐야 하는 간선의 수이다.
+- 높이(height): 루트 노드에서 가장 깊숙히 있는 노드의 깊이이다.
+- Size: 자신을 포함한 모든 자손 노드의 개수이다.
+- Level: 트리의 특정 깊이를 가지는 노드의 집합이다.
+- Degree: 노드의 자식 수이다.
+
+## 7.2. 특징
+- 하나의 루트 노드와 0개 이상의 하위 트리로 구성되어 있다.
+- 데이터를 순차적으로 저장하지 않기 때문에 비선형 자료구조이다.
+- 트리 내에 또 다른 트리가 있는 재귀적 자료구조이다.
+- 단순 순환(Loop)를 갖지 않고, 연결된 무방향 그래프 구조이다.
+- 노드 간에 부모 자식 관계를 갖고 있는 계층형 자료구조이며, 모든 자식 노드는 하나의 부모 노드만 갖는다.
+- 노드가 n개인 트리는 항상 n-1개인 간선(edge)을 가진다.
+
+# 8. Heap
+## 8.1. Heap 이란?
+- 완전 이진 트리의 일종으로 우선순위 Queue를 위해 만들어진 자료구조이다.
+- 여러 개의 값들 중에서 최댓값이나 최솟값을 빠르게 찾아내도록 만들어졌다.
+- 일종의 반정령 상태(느슨한 정렬 상태)를 유지한다.
+- 중복된 값을 허용한다.
+
+## 8.2. Heap의 종류
+
+<img width="650" height="711" alt="Image" src="https://github.com/user-attachments/assets/3d23a1a1-fb23-476f-844b-c11e9a9f2d9b" />
+
+- **최대 힙(max heap)**
+    - 부모 노드의 키 값이 자식 노드의 키 값보다 크거나 같은 완전 이진 트리
+    - key(부모 노드) ≥ key(자식 노드)
+- **최소 힙(min heap)**
+    - 부모 노드의 키 값이 자식 노드의  키 값보다 작거나 같은 완전 이진 트리
+    - key(부모 노드) ≤ key(자식 노드)
+
+## 8.3. Heap의 특징
+- 보통 배열을 이용하여 구현한다.
+- 구현을 쉽게 하기 위해서 인덱스 1부터 시작한다.
+
+<img width="650" height="997" alt="Image" src="https://github.com/user-attachments/assets/f2fe17ce-eb69-46ad-8bcf-cd9772594a80" />
+
+- 인덱스
+    - 왼쪽 자식의 인덱스: [부모 인덱스] * 2
+    - 오른쪽 자식의 인덱스: [부모 인덱스] * 2 + 1
+    - 부모의 인덱스: [자식 인덱스] / 2
+
+## 8.4. 시간 복잡도
+- 삽입 / 삭제: O(logN)
 
 
 * * *
@@ -231,9 +280,15 @@ https://yoongrammer.tistory.com/44 <br>
 
 **스택/큐/덱** <br>
 https://velog.io/@nnnyeong/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%EC%8A%A4%ED%83%9D-Stack-%ED%81%90-Queue-%EB%8D%B1-Deque <br>
+https://comdolidol-i.tistory.com/44 <br>
+https://comdolidol-i.tistory.com/47 <br>
 https://bigsong.tistory.com/32 <br>
+
 
 **해시테이블**
 https://mojing.tistory.com/entry/Data-Structure-%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%ED%95%B4%EC%8B%9C-%ED%85%8C%EC%9D%B4%EB%B8%94Hash-Table <br>
 
+**트리/힙**
+https://gmlwjd9405.github.io/2018/08/12/data-structure-tree.html#google_vignette <br>
+https://gmlwjd9405.github.io/2018/05/10/data-structure-heap.html <br>
 
