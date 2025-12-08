@@ -1,4 +1,4 @@
-# 배열 (Array)
+# Array
 
 **정의:** 동일한 타입의 데이터를 메모리 상에 연속적으로 저장하는 자료구조.
 
@@ -10,9 +10,9 @@
 
 | operation | avg case time complexity | worst case time complexity |
 | :---: | :---: | :---: |
-| insertion / delete / search | $O(n)$ | $O(n)$ |
+| insertion / deletion / search | $O(n)$ | $O(n)$ |
 
-# 연결 리스트 (Single Linked List)
+#  Linked List
 
 <img width="640" height="123" alt="image" src="https://github.com/user-attachments/assets/551e1638-d979-4c86-a77d-618dcf2234b7" />
 
@@ -28,9 +28,9 @@
 
 | operation | avg case time complexity |
 | :---: | :---: |
-| HEAD에 대한 insertion / delete | $O(1)$ |
-| TAIL에 대한 insertion / delete | $O(1)$ : TAIL 위치를 아는 경우 <br> $O(n)$: TAIL 위치 모르는 경우 |
-| (중간 위치) insertion / delete | $serach time + O(1)$ <br> (삽입할 위치까지 탐색 + next pointer 변경) |
+| HEAD에 대한 insertion / deletion | $O(1)$ |
+| TAIL에 대한 insertion / deletion | $O(1)$ : TAIL 위치를 아는 경우 <br> $O(n)$: TAIL 위치 모르는 경우 |
+| (중간 위치) insertion / deletion | $serach time + O(1)$ <br> (삽입할 위치까지 탐색 + next pointer 변경) |
 
 ## Double Linked list
 
@@ -50,7 +50,7 @@
 - HEAD와 TAIL을 연결한 것이다.
     - TAIL의 next를 null이 아닌 HEAD로 표시
 
-# 스택
+# Stack
 
 <img width="400" height="600" alt="image" src="https://github.com/user-attachments/assets/0c739cb6-c9d9-420c-ac2d-e7847cc9652c" />
 
@@ -66,7 +66,7 @@
 
 | operation | avg case time complexity |
 | :---: | :---: |
-| insertion / delete | $O(1)$ |
+| insertion / deletion | $O(1)$ |
 | search | $O(n)$ |
 
 push와 pop, peek는 top에 대한 연산이 이루어 지므로 $O(1)$이다. <br>
@@ -88,7 +88,7 @@ push와 pop, peek는 top에 대한 연산이 이루어 지므로 $O(1)$이다. <
 - undo와 같은 뒤로가기 기능
 - 메모리의 스택 영역 등등…
 
-# 큐 (Linear Queue)
+# Queue
 
 <img width="600" height="397" alt="image" src="https://github.com/user-attachments/assets/098ca633-95d6-412a-9521-e2004d29ea4c" />
 
@@ -123,7 +123,7 @@ push와 pop, peek는 top에 대한 연산이 이루어 지므로 $O(1)$이다. <
 - 스케줄링 처리 (들어온 순서대로)
 - 등등…
 
-## 원형 큐 (circular queue)
+## Circular Queue
 
 <img width="600" height="571" alt="image" src="https://github.com/user-attachments/assets/bb7d7b53-1145-4888-b3f5-257f8be25226" />
 
@@ -133,7 +133,7 @@ push와 pop, peek는 top에 대한 연산이 이루어 지므로 $O(1)$이다. <
 - 배열의 끝에 도달하면 다시 배열의 처음으로 돌아가 데이터가 저장되므로 배열의 공간을 효율적으로 사용할 수 있다.
   - `rear++;` 이 아니라 `(rear+1)%(MAX_SIZE);`로 rear 값을 update해준다.
 
-## 덱 (deque)
+## Deque
 
 <img width="600" height="548" alt="image" src="https://github.com/user-attachments/assets/6780902c-4c3c-4714-98e7-364e8680d9b5" />
 
@@ -159,7 +159,7 @@ push와 pop, peek는 top에 대한 연산이 이루어 지므로 $O(1)$이다. <
   TODO
   ```
 
-# 해시 테이블
+# Hash Table
 
 <img width="300" height="230" alt="image" src="https://github.com/user-attachments/assets/5e0d96c8-2d76-4a4a-85d3-a389f1099516" />
 
@@ -173,9 +173,9 @@ push와 pop, peek는 top에 대한 연산이 이루어 지므로 $O(1)$이다. <
 
 **Time Complexity**:
 
-| operation | avg case time complex | worst case time complex |
+| operation | avg case time complexity | worst case time complexity |
 | :---: | :---: | :---: |
-| search/insert/delete | $O(1)$ | $O(n)$ |
+| search/insert/deletion | $O(1)$ | $O(n)$ |
 
 **worst case time complex:**
 - hash값의 충돌(해시 값 중복)이 일어난 경우가 최악의 경우이며, 이를 해결하기 위한 방법은 chaining과 open addressing 방식이 존재한다.
@@ -285,46 +285,89 @@ Map과 비슷해 보이지만 아래의 단점이 존재한다.
 | 크기 확인 | map.size로 즉시 확인 가능 ($O(1)$) | Object.keys(obj).length로 계산 필요 ($O(n)$) |
 | 성능 | 잦은 추가/삭제 시 최적화되어 있음 | 데이터가 정적이고 구조가 잡혀있을 때 유리함 |
 
+# Tree
 
+<img width="400" height="732" alt="image" src="https://github.com/user-attachments/assets/9df94857-b64d-4550-8fc1-33b00280414e" />
 
+**정의:** 그래프의 한 종류로 cycle이 존재하지 않는 계층적 자료구조로 node와 node들을 연결하는 edge로 구성되어 있다.
 
+**특징::**
 
-# TODO: 여기부터
+- 방향이 존재한다.
+- 하나의 root node만 존재한다.
+- node의 개수가 $N$인 tree의 edge 수는 항상 $N-1$이다.
+- 이진트리, 이진 탐색 트리, 균형 트리, 다차원 탐색 트리, 힙과 같은 종류가 있다.
 
-# 트리
+## Heap
 
-순환이 존재하지 않는 그래프 level(depth)가 있는 자료구조임.
+<img width="400" height="711" alt="image" src="https://github.com/user-attachments/assets/f32f3e52-45fc-4841-a80a-648b323be45e" />
 
-## 힙
+**정의:** 완전이진트리의 일종으로 우선순위 큐를 위해 만들어진 자료구조이다.
 
-완전이진트리의 일종으로 우선순위 큐를 위해 만들어진 자료구조이다.
+**특징:**
+- 우선순위를 정렬한 방식에 따라 최대 힙, 최소 힙으로 나뉜다.
+  - 최대 힙:
+    - 부모 노드의 키 값이 자식 노드의 키 값보다 크거나 같은 완전 이진 트리
+    - key(부모 노드) >= key(자식 노드)
+  - 최소 힙:
+    - 부모 노드의 키 값이 자식 노드의 키 값보다 작거나 같은 완전 이진 트리
+    - key(부모 노드) <= key(자식 노드)
 
-## 우선 순위 큐
+**시간 복잡도**
+|Operation|avg case time complexity|
+|:---:|:---:|
+|insertion / deletion | $O(logn)$
 
-FIFO가 아니라 우선순위대로 처리하는 큐, 힙을 사용해 구현한다.
+### insertion
+
+<img width="400" height="2444" alt="image" src="https://github.com/user-attachments/assets/3ad1d2d5-a0b5-4de4-ae76-13f24d4fcaf6" />
+
+_(이미지에서는 Max Heap으로 예시)_
+insetion은 leaf node에서 이루어지며, 이후 부모 노드와의 key 값 비교를 통해 힙의 균형을 맞춘다.
+
+### deletion
+
+<img width="400" height="2444" alt="image" src="https://github.com/user-attachments/assets/fd3949c4-1c5b-4801-ae89-fb4c8b4635f8" />
+
+_(이미지에서는 Max Heap으로 예시)_
+Max Heap에서 deletion은 root node의 삭제를 의미하는 것으로(Min Heap에선 반대), root node 삭제 후 root node의 빈 자리를 마지막 leaf node로 replace한다. <br>
+이후 자식노드와의 key 값 비교를 통해 힙의 균형을 맞춘다.
+
+### Priority Queue
+
+**정의:** 기존 큐의 특징인 FIFO가 아니라 우선순위대로 처리하는 큐, 위에서 설명한 Heap을 사용해 구현한다.
+
+**Time Complexity:** <br>
+_힙을 사용하여 구현하는 이유는 time complexity 측면에서 Heap으로 구현하는게 제일 효율적이라 그렇다._
+
+|Implementation using|`enqueue()` time complexity|`dequeue` time complexity|
+|:---:|:---:|:---:|
+|array|$O(1)$|$O(n)$|
+|linked list|$O(n)$|$O(1)$|
+|heap|$O(logn)$|$O(logn)$|
 
 # 참고자료
 
-## 배열
+## Array
 
 https://yoongrammer.tistory.com/43
 
-## 연결 리스트
+## Linked List
 
 https://yoongrammer.tistory.com/44 <br>
 https://limecoding.tistory.com/90 <br>
 https://opentutorials.org/module/1335/8940
 
-## 스택
+## Stack
 
 https://velog.io/@alkwen0996/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%EC%8A%A4%ED%83%9DStack#%EC%8A%A4%ED%83%9D-%EC%8B%9C%EA%B0%84%EB%B3%B5%EC%9E%A1%EB%8F%84
 
-## 큐
+## Queue
 
 https://yoongrammer.tistory.com/46 <br>
 https://velog.io/@9e0na/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%EB%8D%B1DEQUE
 
-## 해시 테이블
+## Hash Table
 
 https://dayzen1258.tistory.com/entry/%ED%95%B4%EC%8B%9C%ED%85%8C%EC%9D%B4%EB%B8%94%EC%9D%B4%EB%9E%80 <br>
 https://choi-records.tistory.com/entry/Data-Structure-Hash-Table#toc31 <br>
@@ -333,3 +376,9 @@ https://www.geeksforgeeks.org/dsa/open-addressing-collision-handling-technique-i
 ## Map
 
 https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Map
+
+## Tree
+https://gmlwjd9405.github.io/2018/08/12/data-structure-tree.html
+
+## Heap
+https://gmlwjd9405.github.io/2018/05/10/data-structure-heap.html
