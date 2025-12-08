@@ -1,3 +1,9 @@
+배열/연결리스트
+스택/큐/덱
+해시테이블
+트리
+힙
+
 # 1. Array
 ## 1.1. Array 란?
 <img width="750" height="245" alt="Image" src="https://github.com/user-attachments/assets/e5c04dd6-5829-4e0b-a8f0-5a3593672034" />
@@ -104,7 +110,14 @@
 - DFS 알고리즘
 - 작업 실행 취소와 같은 역추적 작업이 필요하거나 괄호 검사, 후위 연산법, 문자열 역순 출력 등에 사용한다.
 
-## 3.3. 시간 복잡도
+## 3.3. Stack의 연산
+- push(): 데이터 삽입
+- pop(): 데이터 삭제
+- is_empty(): 스택이 공백 상태인지 검사
+- is_full(): 스택이 포화 상태인지 검사
+- peek(s): 요소를 스택에서 삭제하지 않고 보기만 하는 연산
+
+## 3.4. 시간 복잡도
 - 삽입 / 삭제: O(1)
 * * *
 # 4. Queue
@@ -114,7 +127,7 @@
 - 양 쪽 끝에서 데이터의 삽입과 삭제가 이루어지는 형태이다.
 - FIFO(First In First Out) 방식으로 동작한다.
 - 데이터가 삽입되는 곳을 rear, 데이터가 제거되는 곳을 front라고 한다.
-- Pop 및 Push 전에는 Queue의 Empty/Full 여부를 확인 후 진행해야 한다.
+- 데이터 삽입 및 삭제 전에는 Queue의 Empty/Full 여부를 확인 후 진행해야 한다.
 
 ## 4.2. Queue의 구분
 #### Linear Queue
@@ -142,7 +155,16 @@
 - BFS 알고리즘
 - 데이터를 입력된 순서대로 처리해야 할 때 또는 프로세스 관리, 대기 순서 관리 등에 사용한다.
 
-## 4.4. 시간 복잡도
+## 4.4. Queue의 연산
+- init(): 초기화
+- enqueue(e): 주어진 요소 e를 Queue의 맨 뒤에 추가
+- dequeue(): Queue가 비어있지 않으면 맨 앞 요소를 삭제하고 반환
+- is_empty: Queue가 비어있으면 true, 아니면 false 반환
+- peek(): Queue가 비어있지 않으면 맨 앞 요소를 삭제하지 않고 반환
+- is_full(): Queue가 가득 차 있으면 ture, 아니면 false 반환
+- size(): Queue의 모든 요소들의 개수를 반환
+
+## 4.5. 시간 복잡도
 - 삽입 / 삭제: O(1)
 * * *
 # 5. Deque
@@ -291,4 +313,3 @@ https://mojing.tistory.com/entry/Data-Structure-%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A
 **트리/힙**
 https://gmlwjd9405.github.io/2018/08/12/data-structure-tree.html#google_vignette <br>
 https://gmlwjd9405.github.io/2018/05/10/data-structure-heap.html <br>
-
