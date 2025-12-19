@@ -170,6 +170,7 @@
 # 5. Deque
 ## 5.1. Deque 이란?
 <img width="450" height="1026" alt="Image" src="https://github.com/user-attachments/assets/8462e065-34b5-4325-9ed9-c98c312e639e" />
+
 - **Double - Ended Queue**의 줄임말로, 양쪽 끝인 front, rear에서 삽입/삭제가 모두 가능한 형태이다.
 - 연속적인 메모리를 기반으로 하는 시퀀스 컨테이너로, 가변적 크기를 갖는다.
 - 중간에 데이터가 삽입될 때 다른 요소들을 앞, 뒤로 밀 수 있다.
