@@ -112,6 +112,86 @@
 - 각 레벨(Level)마다 하나의 차원(필드)만을 번갈아 가며 분기 기준으로 사용
     - 한 레벨에서는 하나의 필드만 사용
     - 총 k개의 필드를 사용하는 검색이라면, k개의 레벨을 내려가며 검색에 사용하는 필드가 일치
+### 2.4.2. 구조 및 구성 방식
+|구성요소|설명|예시|
+|---|---|---|
+|분할 축(Splitting Axis)|각 노드가 데이터를 분할하는 기준 축|X축, Y축, Z축 등 순차 반복|
+|분할 값(Splitting Value)|선택된 축에서의 기준값|중위값(median) 기반 분할 선|
+|노드(Node)|좌표와 관련 정보 저장|(x, y), (r, g, b), (latitude, longitude) 등|
+|서브트리(Subtree)|좌/우 하위 공간 노드|분할 기준보다 작거나 큰 영역으로 재귀 구성|
+### 2.4.3. 시간 복잡도
+|연산|평균 시간복잡도|최악 시간복잡도|
+|--|---|---|
+|삽입|O(log n)|O(n)|
+|삭제|O(log n)|O(n)|
+|검색|O(log n)|O(n)|
+|최근접 이웃 검색|O(log n)|O(n)|
+### 2.4.4. 연산
+#### 2.4.4.1. 삽입
+1. 축 결정
+- 현재 노드의 depth를 d라고 할 때, 비교할 축은 depth (mod k)로 결정됨
+2. 비교 및 이동
+- 추가하려는 점의 해당 축 좌표가 현재 노드의 좌표보다 작으면 왼쪽 자식으로 이동
+- 크거나 같으면 오른쪽 자식으로 이동
+3. 반복
+- 비어있는 Leaf Node 위치에 도달할 때까지 1~2번을 반복하여 새로운 노드 삽입
+#### 2.4.4.2. 삭제
+1. 자식이 없는 경우 (Leaf Node)
+- 그냥 삭제
+2. 오른쪽 자식이 있는 경우
+- N의 오른쪽 서브트리에서 i번째 축의 값이 최소인 노드(M)를 찾음
+- N의 위치에 M의 데이터를 덮음
+- 이제 원래 M이 있던 위치의 노드를 재귀적으로 삭제
+3. 왼쪽 자식만 있는 경우
+- 왼쪽 서브트리에서 i번째 축의 최소값을 찾아 올리는 것이 아니라, 최소값 노드(M)를 찾아 N의 위치로 올린 뒤, 원래의 왼쪽 서브트리 전체를 오른쪽으로 옮김
+### 2.4.5. 알고리즘
+- 최근접 이웃(NN) 탐색
+```
+public class KDTree {
+    private Node root;
+    private final int K = 2;
+
+    private Node bestNode = null;
+    private double bestDist = Double.MAX_VALUE;
+
+    // 최근접 이웃 찾기 시작 함수
+    public int[] findNearest(int[] target) {
+        bestNode = null;
+        bestDist = Double.MAX_VALUE;
+        searchNearest(root, target, 0);
+        return bestNode.point;
+    }
+
+    private void searchNearest(Node current, int[] target, int depth) {
+        if (current == null) return;
+
+        // 1. 현재 노드와 거리 계산
+        double d = distance(current.point, target);
+        if (d < bestDist) {
+            bestDist = d;
+            bestNode = current;
+        }
+
+        int cd = depth % K;
+        Node next = (target[cd] < current.point[cd]) ? current.left : current.right;
+        Node other = (target[cd] < current.point[cd]) ? current.right : current.left;
+
+        // 2. 일단 타겟이 속한 방향으로 먼저 내려감
+        searchNearest(next, target, depth + 1);
+
+        // 3. 가지치기 (Pruning): 반대편 영역에 더 가까운 게 있을 가능성 확인
+        // 타겟과 분할 평면(축) 사이의 거리가 현재 최단거리보다 작아야만 탐색
+        if (Math.pow(target[cd] - current.point[cd], 2) < bestDist) {
+            searchNearest(other, target, depth + 1);
+        }
+    }
+
+    private double distance(int[] p1, int[] p2) {
+        return Math.pow(p1[0] - p2[0], 2) + Math.pow(p1[1] - p2[1], 2);
+    }
+}
+```
+
 
 ***
 
