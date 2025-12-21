@@ -41,34 +41,57 @@
 
 **worst case time complex:**
 - 이진 탐색 트리가 한쪽으로 편향된 불균형 상태로, 이 경우 배열과 다를바 없어져 최악의 경우가 되고 <br> 이를 보완하기 위해 balanced BST가 존재한다.
+렬
+- 인접 리스트
 
-<img width="400" height="321" alt="image" src="https://github.com/user-attachments/assets/17cee954-641b-4b70-9489-975b78193053" />
+## 무방향 그래프
 
-# AVL-Tree
+<img width="335" height="258" alt="image" src="https://github.com/user-attachments/assets/9093d9ad-e3f2-444e-a8d2-3fe7dc50e11d" />
 
-# RB-Tree
+- 두 정점을 연결하는 간선에 방향이 없는 그래프로, 간선이 양방향으로 연결되어 있어 어느 방향으로든 이동할 수 있다.
 
-# B-Tree
+## 방향 그래프
 
-# Multidimensional Search Tree
+<img width="400" height="385" alt="image" src="https://github.com/user-attachments/assets/4455ae7b-f882-4c0b-bd6d-79a76a794454" />
 
-## KD-Tree
+- Edge에 방향이 존재하는 그래프로 간선$(a,b)$는 a -> b 로는 가지만, b -> a 로는 가지 않는다.
 
-# Graph
+## 가중 그래프
 
+<img width="400" height="359" alt="image" src="https://github.com/user-attachments/assets/a52ce965-af07-49a2-8dcc-8fa78e9ee5f3" />
 
-
+- 그래프의 각 간선(edge)에 수치적인 값인 가중치(weight)가 할당된 그래프이다.
 
 # 참고자료
 
 ## Binary Tree
 
-http://www.ktword.co.kr/test/view/view.php?no=6535
-
-[https://laurent.tistory.com/entry/자료구조-이진-트리-순회](https://laurent.tistory.com/entry/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%EC%9D%B4%EC%A7%84-%ED%8A%B8%EB%A6%AC-%EC%88%9C%ED%9A%8C)
-
+http://www.ktword.co.kr/test/view/view.php?no=6535 <br>
+[https://laurent.tistory.com/entry/자료구조-이진-트리-순회](https://laurent.tistory.com/entry/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%EC%9D%B4%EC%A7%84-%ED%8A%B8%EB%A6%AC-%EC%88%9C%ED%9A%8C)<br>
 https://skytitan.tistory.com/97
 
 ## BST
 
 http://www.ktword.co.kr/test/view/view.php?m_temp1=6126&id=1303
+
+## AVL Tree
+
+https://yoongrammer.tistory.com/72
+
+## RB Tree
+
+https://seokyoungg.tistory.com/101
+
+## B Tree
+
+https://code-lab1.tistory.com/217
+
+## B+ Tree
+
+https://8iggy.tistory.com/191
+
+# Graph
+
+https://youngminieo1005.tistory.com/63 <br>
+https://m.blog.naver.com/oh-mms/222045842438 <br>
+https://devjourney7.tistory.com/130
