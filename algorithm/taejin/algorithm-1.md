@@ -62,6 +62,9 @@ $O(n^2)$ 시간이 걸리는 알고리즘으로, 2차 복잡도라고 불리며,
 
 ## Merge Sort
 
+### BOJ 11728 (배열 합치기)
+
+
 ## Quick Sort
 
 ## Radix Sort
@@ -118,6 +121,21 @@ function binarySearch(arr, target) {
 
 $O(logn)$의 시간 복잡도를 가진다.
 
+## Graph Search
+
+그래프에서 하나의 정점으로부터 시작하여 차례대로 모든 정점들을 한 번씩 방문을 진행한 방법으로는 너비 우선 탐색과 깊이 우선 탐색 두 가지 방식이 존재한다. <br>
+두 알고리즘 모두 백트레킹을 기반으로 현재 탐색 중인 path가 끝에 도달하면 백트레킹을 통해 이전으로 돌아간다.
+
+### DFS
+
+<img width="1000" height="1000" alt="image" src="https://github.com/user-attachments/assets/afd40a35-8dfb-463b-b27f-82a2bca6a108" />
+
+
+### BFS
+
+<img width="1000" height="1000" alt="image" src="https://github.com/user-attachments/assets/98461994-edf7-402c-bdab-a917287f7259" />
+
+
 
 # 참고 자료
 
@@ -125,3 +143,15 @@ $O(logn)$의 시간 복잡도를 가진다.
 
 https://hanamon.kr/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-time-complexity-%EC%8B%9C%EA%B0%84-%EB%B3%B5%EC%9E%A1%EB%8F%84/ <br>
 https://ko.wikipedia.org/wiki/%EC%8B%9C%EA%B0%84_%EB%B3%B5%EC%9E%A1%EB%8F%84
+
+## Merge Sort
+
+https://gmlwjd9405.github.io/2018/05/08/algorithm-merge-sort.html
+
+### DFS
+
+https://gmlwjd9405.github.io/2018/08/14/algorithm-dfs.html
+
+### BFS
+
+https://gmlwjd9405.github.io/2018/08/15/algorithm-bfs.html
