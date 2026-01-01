@@ -1,0 +1,255 @@
+# 시간복잡도
+
+어떠한 알고리즘의 문제를 해결하는데 걸리는 시간과 입력의 함수 관계를 가리킨다.
+
+## 시간 복잡도 표기 방법
+
+- Big-O: 상한 접근을 표시한다.
+- Big-Ω: 하한 접근을 표시한다.
+- Big-θ: 평균 접근을 표시한다.
+
+알고리즘의 평균 접근은 구하기가 어렵고(모든 입력 사례[best, worst, average]를 구하고 평균을 구해야하기 때문에 어렵다.), <br>
+하한은 "최소한 이만큼은 걸려"라는 것은 성능 최적화에 큰 도움이 되지 않기 때문에, **빅-오** 표기법을 사용한다.
+
+## Big-O
+
+빅-오 표기법은 계수와 낮은 차수의 항을 제외시키고, 최고 차항만 남기고 표기하는 방법이다.
+
+> 어떤 알고리즘에 필요한 시간이 $5n^3 + 3n$ 이라면 $O(n^3)$ 이라고만 표기하면 된다.
+
+<img width="600" height="1156" alt="image" src="https://github.com/user-attachments/assets/8f543d12-afdc-4f78-8b53-e8797dd3d742" />
+
+## $O(1)$
+
+가장 빠른 알고리즘으로 $O(1)$의 시간이 걸린다고도 표현하며, 입력 값이 증가하더라도 시간이 늘어나지 않고 즉시 출력 값을 얻을 수 있다.
+
+### 예시
+
+- 배열의 index를 활용한 참조
+- 해시 충돌이 일어나지 않은 해시 테이블로 구현된 자료구조
+
+## $O(n)$
+
+$O(n)$시간이 걸리는 알고리즘으로, 선형 복잡도라고도 불리며 입력값이 증가함에 따라 시간 또한 **같은 비율**로 증가하는 알고리즘을 뜻한다.
+
+### 예시
+
+- 배열의 순차 탐색
+- n번 반복하는 반복문
+
+## $O(logn)$
+
+$O(logn)$ 시간이 걸리는 알고리즘으로, 로그 복잡도라고도 불리며 $log_2$에서 2는 생략된 모습이다. <br>
+상수 시간 다음으로 빠른 속도를 보여준다.
+
+### 예시
+
+- 불균형이 존재하지 않는 BST에서 값 탐색
+- 힙에서 삽입과 삭제
+
+## $O(n^2)$
+
+$O(n^2)$ 시간이 걸리는 알고리즘으로, 2차 복잡도라고 불리며, 입력 값에 따라 시간이 **거듭 제곱**으로 증가하는 알고리즘을 뜻한다.
+
+### 예시
+
+- 버블 정렬과 같은 알고리즘
+- 2차원 배열 전체 탐색
+
+# Sort
+
+모든 Sort 알고리즘을 다룰 순 없으니 Merge, Quick, Radix만 다루어 볼 예정.
+
+## Merge Sort
+
+merge sort의 단계를 요약하면 아래와 같다.
+
+1. 배열을 분할한다.
+2. 분할한 배열에 대한 정렬을 수행한다
+3. 정렬된 두 리스트를 합친다.
+
+<img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/ec05129e-c853-42d7-b83e-fbd4da6c2cab" />
+
+시간 복잡도: $O(NlogN)$
+장점: 항상 $O(NlogN)$을 보장
+단점: 임시 배열이 필요하다.
+
+문제와 함께 봐보겠다.
+
+### BOJ 11728 (배열 합치기)
+
+**문제** <br>
+정렬되어있는 두 배열 A와 B가 주어진다. 두 배열을 합친 다음 정렬해서 출력하는 프로그램을 작성하시오.
+
+**입력** <br>
+첫째 줄에 배열 A의 크기 N, 배열 B의 크기 M이 주어진다. (1 ≤ N, M ≤ 1,000,000)
+
+둘째 줄에는 배열 A의 내용이, 셋째 줄에는 배열 B의 내용이 주어진다. 배열에 들어있는 수는 절댓값이 $10^9$보다 작거나 같은 정수이다.
+
+```js
+const fs = require('fs');
+
+const input = fs.readFileSync(0).toString().trim().split(/\s+/);
+
+let cursor = 0;
+const N = Number(input[cursor++]);
+const M = Number(input[cursor++]);
+
+// arrayA와 arrayB를 따로 만들지 않고, input 배열 내의 위치를 계산
+// arrayA의 시작 인덱스: 2
+// arrayB의 시작 인덱스: 2 + N
+
+const startA = cursor; 
+const startB = cursor + N;
+
+let aIdx = 0; // A에서 몇 번째인지
+let bIdx = 0; // B에서 몇 번째인지
+const result = [];
+
+// 2. 새로운 배열을 생성하지 않고 원본 input 배열의 값들을 직접 비교
+while (aIdx < N && bIdx < M) {
+    // 숫자로 변환하여 비교
+    const valA = Number(input[startA + aIdx]);
+    const valB = Number(input[startB + bIdx]);
+
+    if (valA <= valB) {
+        result.push(valA);
+        aIdx++;
+    } else {
+        result.push(valB);
+        bIdx++;
+    }
+}
+
+// 3. 남은 요소들 처리
+while (aIdx < N) result.push(input[startA + aIdx++]);
+while (bIdx < M) result.push(input[startB + bIdx++]);
+
+console.log(result.join(' '));
+```
+
+## Quick Sort
+
+분할정복 알고리즘으로, pivot을 기준으로 partioning을 반복한다.
+
+quick sort 단계를 요약하면 아래와 같다.
+1. 정렬할 list에서 하나의 요소를 선택한다. 이 요소는 pivot이 된다.
+2. pivot을 기준으로 작은 요소는 왼쪽, 큰 요소는 오른쪽으로 간다.
+3. pivot이 제대로된 위치를 찾게 된다면 종료하고, 재귀적으로 다시 수행을 진행한다.
+
+시간복잡도(평균): $O(NlogN)$
+시간복잡도(최악): $O(N^2)$ (피벗이 잘못 선정되는 경우)
+장점: 추가적인 메모리 사용 x
+단점: pivot이 잘못된 경우 $O(N^2)$ 소모
+단점 보완: 2중 피벗, 중간값 피벗 선정 등의 방식 사용
+
+## Radix Sort
+
+각 자릿수를 비교하여 정렬을 하는 알고리즘이다.
+ex) 403 > 302 를 우리가 바로 진행하는 것은 100의자리 숫자만 비교하여, 연산을 진행하는 것이기 때문이다.
+이 논리를 이용하여 radix sort는 진행된다.
+
+시간 복잡도: $O(dN)$ ($d$는 자릿수). $d$가 작다면 $O(N)$에 가깝게 매우 빠르다.
+장점: 매우 빠른 속도
+단점: 데이터가 정수나 문자열처럼 자릿수가 정해진 경우에만 사용 가능
+
+# Search
+
+탐색 알고리즘은 target 값을 자료구조에서 찾아내는 알고리즘으로 Linear와 Binary만 다루어 볼 예정.
+
+## Linear Search
+
+배열과 같은 자료구조에서 0번째 요소부터 마지막 요소까지 순차적으로 탐색을 진행하여, targe 값과 같다면 return해주는 알고리즘이다.
+
+```js
+function linearSearch(arr, target) {
+  for (let i = 0; i < arr.length; i++) { 
+    if (arr[i] === target) { 
+      return i; // 찾으면 인덱스 반환
+    }
+  }
+  return -1; // 탐색 실패
+}
+```
+
+$O(n)$ 시간 복잡도를 가진다.
+
+## Binary Search
+
+배열을 기준으로는 반씩 targe 값과 비교하며 탐색을 진행하는 알고리즘으로 응용으로는 배열이 아닌 트리 구조를 만드는 BST가 존재한다. <br>
+아래 코드 예시는 배열 기준 이진 탐색 함수
+
+```js
+function binarySearch(arr, target) {
+  let left = 0;
+  let right = arr.length - 1;
+
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2); // 소수점 제거를 위한 floor 사용
+
+    // 2. 중간값과 타겟 비교
+    if (arr[mid] === target) {
+      return mid; // 찾았을 때 해당 인덱스 반환
+    } else if (arr[mid] > target) {
+      // 중간값이 타겟보다 크면, 왼쪽 절반을 탐색하기 위해 범위를 좁힘
+      right = mid - 1;
+    } else {
+      // 중간값이 타겟보다 작면, 오른쪽 절반을 탐색하기 위해 범위를 좁힘
+      left = mid + 1;
+    }
+  }
+
+  return -1; // 탐색 실패
+}
+```
+
+$O(logn)$의 시간 복잡도를 가진다.
+
+## Graph Search
+
+그래프에서 하나의 정점으로부터 시작하여 차례대로 모든 정점들을 한 번씩 방문을 진행한 방법으로는 너비 우선 탐색과 깊이 우선 탐색 두 가지 방식이 존재한다. <br>
+두 알고리즘 모두 백트레킹을 기반으로 현재 탐색 중인 path가 끝에 도달하면 백트레킹을 통해 이전으로 돌아간다.
+
+### DFS
+
+<img width="1000" height="1000" alt="image" src="https://github.com/user-attachments/assets/afd40a35-8dfb-463b-b27f-82a2bca6a108" />
+
+시작 노드에서 다음 분기로 넘어가기 전에 해당 분기를 완벽하게 탐색하는 방법으로, 재귀 호출을 사용한다.
+
+**Time Complexity**
+인접 리스트로 표현된 그래프: $O(N+E)$
+인접 행렬로 표현된 그래프: $O(N^2)$
+
+### BFS
+
+<img width="1000" height="1000" alt="image" src="https://github.com/user-attachments/assets/98461994-edf7-402c-bdab-a917287f7259" />
+
+시작 노드에서 인접한 노드를 우선적으 탐색하는 방법으로, 방문한 노드들을 차례로 저장한 후 꺼낼 수 있는 자료 구조인 큐를 사용한다.
+
+**Time Complexity**
+인접 리스트로 표현된 그래프: $O(N+E)$
+인접 행렬로 표현된 그래프: $O(N^2)$
+
+# 참고 자료
+
+## 시간 복잡도
+
+https://hanamon.kr/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-time-complexity-%EC%8B%9C%EA%B0%84-%EB%B3%B5%EC%9E%A1%EB%8F%84/ <br>
+https://ko.wikipedia.org/wiki/%EC%8B%9C%EA%B0%84_%EB%B3%B5%EC%9E%A1%EB%8F%84
+
+## Merge Sort && Quick Sort
+
+https://gmlwjd9405.github.io/2018/05/08/algorithm-merge-sort.html <br>
+https://youtu.be/59fZkZO0Bo4?si=SxNXq-Rv9q51Hoh5
+
+## Radix Sort
+
+https://youtu.be/dq5t1woLJMw?si=lRsxE81CiRK0wsnz
+
+## DFS
+
+https://gmlwjd9405.github.io/2018/08/14/algorithm-dfs.html
+
+## BFS
+
+https://gmlwjd9405.github.io/2018/08/15/algorithm-bfs.html
