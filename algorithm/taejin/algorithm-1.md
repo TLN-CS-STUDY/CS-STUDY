@@ -67,7 +67,11 @@ $O(n^2)$ 시간이 걸리는 알고리즘으로, 2차 복잡도라고 불리며,
 
 ## Quick Sort
 
+
+
 ## Radix Sort
+
+
 
 # Search
 
@@ -130,12 +134,21 @@ $O(logn)$의 시간 복잡도를 가진다.
 
 <img width="1000" height="1000" alt="image" src="https://github.com/user-attachments/assets/afd40a35-8dfb-463b-b27f-82a2bca6a108" />
 
+시작 노드에서 다음 분기로 넘어가기 전에 해당 분기를 완벽하게 탐색하는 방법으로, 재귀 호출을 사용한다.
+
+**Time Complexity**
+인접 리스트로 표현된 그래프: $O(N+E)$
+인접 행렬로 표현된 그래프: $O(N^2)$
 
 ### BFS
 
 <img width="1000" height="1000" alt="image" src="https://github.com/user-attachments/assets/98461994-edf7-402c-bdab-a917287f7259" />
 
+시작 노드에서 인접한 노드를 우선적으 탐색하는 방법으로, 방문한 노드들을 차례로 저장한 후 꺼낼 수 있는 자료 구조인 큐를 사용한다.
 
+**Time Complexity**
+인접 리스트로 표현된 그래프: $O(N+E)$
+인접 행렬로 표현된 그래프: $O(N^2)$
 
 # 참고 자료
 
@@ -144,14 +157,19 @@ $O(logn)$의 시간 복잡도를 가진다.
 https://hanamon.kr/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-time-complexity-%EC%8B%9C%EA%B0%84-%EB%B3%B5%EC%9E%A1%EB%8F%84/ <br>
 https://ko.wikipedia.org/wiki/%EC%8B%9C%EA%B0%84_%EB%B3%B5%EC%9E%A1%EB%8F%84
 
-## Merge Sort
+## Merge Sort && Quick Sort
 
-https://gmlwjd9405.github.io/2018/05/08/algorithm-merge-sort.html
+https://gmlwjd9405.github.io/2018/05/08/algorithm-merge-sort.html <br>
+https://youtu.be/59fZkZO0Bo4?si=SxNXq-Rv9q51Hoh5
 
-### DFS
+## Radix Sort
+
+https://youtu.be/dq5t1woLJMw?si=lRsxE81CiRK0wsnz
+
+## DFS
 
 https://gmlwjd9405.github.io/2018/08/14/algorithm-dfs.html
 
-### BFS
+## BFS
 
 https://gmlwjd9405.github.io/2018/08/15/algorithm-bfs.html
