@@ -62,16 +62,96 @@ $O(n^2)$ 시간이 걸리는 알고리즘으로, 2차 복잡도라고 불리며,
 
 ## Merge Sort
 
+merge sort의 단계를 요약하면 아래와 같다.
+
+1. 배열을 분할한다.
+2. 분할한 배열에 대한 정렬을 수행한다
+3. 정렬된 두 리스트를 합친다.
+
+<img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/ec05129e-c853-42d7-b83e-fbd4da6c2cab" />
+
+시간 복잡도: $O(NlogN)$
+장점: 항상 $O(NlogN)$을 보장
+단점: 임시 배열이 필요하다.
+
+문제와 함께 봐보겠다.
+
 ### BOJ 11728 (배열 합치기)
 
+**문제** <br>
+정렬되어있는 두 배열 A와 B가 주어진다. 두 배열을 합친 다음 정렬해서 출력하는 프로그램을 작성하시오.
+
+**입력** <br>
+첫째 줄에 배열 A의 크기 N, 배열 B의 크기 M이 주어진다. (1 ≤ N, M ≤ 1,000,000)
+
+둘째 줄에는 배열 A의 내용이, 셋째 줄에는 배열 B의 내용이 주어진다. 배열에 들어있는 수는 절댓값이 $10^9$보다 작거나 같은 정수이다.
+
+```js
+const fs = require('fs');
+
+const input = fs.readFileSync(0).toString().trim().split(/\s+/);
+
+let cursor = 0;
+const N = Number(input[cursor++]);
+const M = Number(input[cursor++]);
+
+// arrayA와 arrayB를 따로 만들지 않고, input 배열 내의 위치를 계산
+// arrayA의 시작 인덱스: 2
+// arrayB의 시작 인덱스: 2 + N
+
+const startA = cursor; 
+const startB = cursor + N;
+
+let aIdx = 0; // A에서 몇 번째인지
+let bIdx = 0; // B에서 몇 번째인지
+const result = [];
+
+// 2. 새로운 배열을 생성하지 않고 원본 input 배열의 값들을 직접 비교
+while (aIdx < N && bIdx < M) {
+    // 숫자로 변환하여 비교
+    const valA = Number(input[startA + aIdx]);
+    const valB = Number(input[startB + bIdx]);
+
+    if (valA <= valB) {
+        result.push(valA);
+        aIdx++;
+    } else {
+        result.push(valB);
+        bIdx++;
+    }
+}
+
+// 3. 남은 요소들 처리
+while (aIdx < N) result.push(input[startA + aIdx++]);
+while (bIdx < M) result.push(input[startB + bIdx++]);
+
+console.log(result.join(' '));
+```
 
 ## Quick Sort
 
+분할정복 알고리즘으로, pivot을 기준으로 partioning을 반복한다.
 
+quick sort 단계를 요약하면 아래와 같다.
+1. 정렬할 list에서 하나의 요소를 선택한다. 이 요소는 pivot이 된다.
+2. pivot을 기준으로 작은 요소는 왼쪽, 큰 요소는 오른쪽으로 간다.
+3. pivot이 제대로된 위치를 찾게 된다면 종료하고, 재귀적으로 다시 수행을 진행한다.
+
+시간복잡도(평균): $O(NlogN)$
+시간복잡도(최악): $O(N^2)$ (피벗이 잘못 선정되는 경우)
+장점: 추가적인 메모리 사용 x
+단점: pivot이 잘못된 경우 $O(N^2)$ 소모
+단점 보완: 2중 피벗, 중간값 피벗 선정 등의 방식 사용
 
 ## Radix Sort
 
+각 자릿수를 비교하여 정렬을 하는 알고리즘이다.
+ex) 403 > 302 를 우리가 바로 진행하는 것은 100의자리 숫자만 비교하여, 연산을 진행하는 것이기 때문이다.
+이 논리를 이용하여 radix sort는 진행된다.
 
+시간 복잡도: $O(dN)$ ($d$는 자릿수). $d$가 작다면 $O(N)$에 가깝게 매우 빠르다.
+장점: 매우 빠른 속도
+단점: 데이터가 정수나 문자열처럼 자릿수가 정해진 경우에만 사용 가능
 
 # Search
 
