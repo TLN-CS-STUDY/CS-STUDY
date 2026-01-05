@@ -172,8 +172,21 @@ https://velog.io/@xowls000/Union-find-Data-Structure-Disjoint-Set#kruskals-algor
 
 ## 예시
 
-크루스칼에서 사용한 것과 동일한 그래프를 프림 알고리즘을 사용하여 MST를 구해보면 <br>
+크루스칼에서 사용한 것과 동일한 그래프를 프림 알고리즘을 사용하여 MST를 구해보면
+
+<img width="1000" height="1220" alt="goodnotes-screenshot-1767598543604" src="https://github.com/user-attachments/assets/e5dd48e6-2a4f-48a1-a1d4-942465b03600" />
+
 시작 정점을 7로 하고, 정점과 연결된 간선들 중 최소비용을 선택하여 확장하고, cycle 생성을 주의하면 된다.
+
+<img width="600" height="600" alt="goodnotes-screenshot-1767598599431" src="https://github.com/user-attachments/assets/cfae9bad-fc94-4d86-835b-a52e3ca7e8f4" />
+
+<img width="600" height="600" alt="goodnotes-screenshot-1767598626853" src="https://github.com/user-attachments/assets/666240b3-af3d-4bba-8788-10546b283645" />
+
+<img width="600" height="600" alt="goodnotes-screenshot-1767598662812" src="https://github.com/user-attachments/assets/dbcc553a-6c82-4dd0-ad10-40af408f10f8" />
+
+<img width="600" height="600" alt="goodnotes-screenshot-1767598689519" src="https://github.com/user-attachments/assets/1d7cbfbd-6d28-45e1-9f05-4d1550a830c4" />
+
+<img width="600" height="600" alt="goodnotes-screenshot-1767598716350" src="https://github.com/user-attachments/assets/3edfc6ad-8c89-4639-8520-e13c954635ce" />
 
 # 위상 정렬
 
