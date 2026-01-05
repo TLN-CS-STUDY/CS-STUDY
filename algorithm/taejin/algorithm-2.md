@@ -103,11 +103,81 @@
    - 순차 탐색 방식(인접 행렬 방식): $O(V^2)$
    - **우선순위 큐(Priority Queue) 방식:** $O(E \log V)$
 
+# 크루스칼 알고리즘
+가장 적은 비용으로 모든 노드를 연결하는 방법을 찾아내는 알고리즘으로 <br>
+즉, MST를 찾는 알고리즘이다.
+
+크루스칼 알고리즘은 정점 위주로 그래프 내의 **모든 간선(Edge)**을 가중치(비용) 기준으로 오름차순 정렬합니다. 그리고 가장 작은 간선부터 하나씩 선택한다.
+
+## 특징
+
+
+✓(1) O(m log m) time. (정렬)
+✓(2): G’ = (V(G), T) 에 대해 DFS를 수행하여 판단 (각 edge 를 추가할 때 마다 최대 O(n+m) time).
+✓ 총 O(m log n) + O(m(n+m)) = O(m2) time.
+하지만 union-find 자료구조로 시간 복잡도를 줄일 수 있다. -> $O(E \log E)$
+
+## 예시
+
+각 step 마다 T 에 추가해도 cycle 이 생기지 않는 edge들 중
+cost 가 가장 작은 edge 를 T(선택된 edge의 집합) 에 추가하고, 이 과정을 반복한다.
+
+아래와 같은 그래프를 예시로 크루스칼 알고리즘을 사용하여 MST를 구하면
+
+<img width="331" height="410" alt="화면 캡처 2026-01-05 143324" src="https://github.com/user-attachments/assets/04fd8a2d-32fb-42bc-b483-e4f5ba2b6a95" />
+
+먼저, edge들을 cost가 높은 순서인 오름차순으로 정렬하여 준다.
+
+edge|7-1|7-4|1-5|5-3|4-2|4-1|6-3|5-6|2-5|1-2|7-5|
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:
+cost|12|13|17|20|24|28|37|45|62|67|73
+
+$T = { ... }$
+
+<img width="600" height="600" alt="goodnotes-screenshot-1767591289516" src="https://github.com/user-attachments/assets/eb72a21b-f596-4e32-9913-5ba462cdea45" />
+
+비용이 가장 적은 간선인 7-1을 선택한다. <br>
+
+$T = { (7,1) }$
+
+<img width="600" height="600" alt="goodnotes-screenshot-1767591366806" src="https://github.com/user-attachments/assets/fa6469e2-fe86-4427-b383-536b1c731458" />
+
+$T$에 존재하지 않은 간선들 중 cycle이 발생하지 않고 비용이 최소인 간선인 7-4를 선택하여준다. <br>
+
+$T = { (7,1), (7,4) }$
+
+(최소 비용 간선 && acyclic) 조건을 준수하며 모든 노드가 연결될 때 까지 계속 진행하여준다.
+
+<img width="600" height="600" alt="goodnotes-screenshot-1767591447688" src="https://github.com/user-attachments/assets/5861cf1d-d24a-4709-8ef4-6210e4fcfb2a" />
+<img width="600" height="600" alt="goodnotes-screenshot-1767591565053" src="https://github.com/user-attachments/assets/7dd7202d-a49b-4c97-ad4d-5576c8c9fbe4" />
+<img width="600" height="600" alt="goodnotes-screenshot-1767591651559" src="https://github.com/user-attachments/assets/ec32a402-62ff-4230-8449-97a66b8bbc20" />
+
+### union-find 적용
+
+하지만 위와 같은 방식으로 진행하면 시간 복잡도가 $O(m log n) + O(m(n+m)) = O(m^2)$ 이 된다. <br>
+이를 개선하기 위해선 union-find라는 자료구조를 사용하면 된다.
+
+https://velog.io/@xowls000/Union-find-Data-Structure-Disjoint-Set#kruskals-algorithm-using-uion-find
+
+
+# 프림 알고리즘
+
+크루스칼과 다르게 정점 위주로 S에 속한 vertex를 하나씩 늘려가면서 cut property 를 만족시키도록 edge를 골라 나
+가면서 MST를 찾는 알고리즘
+
+## 특징
+
+시작점(노드)가 정해져있다.
+트리가 중간에 끊어지지 않고 하나의 덩어리로 점점 커진다.
+Priority Queue(우선순위 큐)를 사용한다.
+
+## 예시
+
+
+
 # 위상 정렬
 
-위상 정렬은 방향 비순환 그래프(DAG, Directed Acyclic Graph)에서 모든 방향 간선 $u \to v$에 대해 정점 $u$가 $v$보다 먼저 오도록 하는 선형 순서이다.
-
-즉, 순서가 정해져 있는 작업들을 차례대로 나열하는 것이다.
+위상 정렬은 방향 비순환 그래프(DAG, Directed Acyclic Graph)에서 모든 방향 간선 $u \to v$에 대해 정점 $u$가 $v$보다 먼저 오도록 하는 선형 순서이다. 예위상 정렬은 방향 비순환 그래프(DAG, Directed A
 
 ## 특징
 
@@ -178,6 +248,11 @@ a -> b -> e -> c -> d -> f -> g
 ## 다익스트라 알고리즘
 https://www.youtube.com/watch?v=o9BnvwgPT-o <br>
 https://m.blog.naver.com/ndb796/221234424646
+
+## 크루스칼 - 프림 알고리즘
+
+https://m.blog.naver.com/ndb796/221230994142 <br>
+https://ongveloper.tistory.com/376
 
 ## 위상 정렬
 https://www.geeksforgeeks.org/dsa/topological-sorting/ <br>
