@@ -103,6 +103,12 @@
 - 순차 탐색 방식(인접 행렬 방식): $O(V^2)$
 - **우선순위 큐(Priority Queue) 방식:** $O(E \log V)$
 
+```js
+// TODO
+```
+
+---
+
 # 크루스칼 알고리즘
 
 가장 적은 비용으로 모든 노드를 연결하는 방법을 찾아내는 알고리즘으로 <br>
@@ -135,13 +141,13 @@ cost 가 가장 작은 edge 를 T(선택된 edge의 집합) 에 추가하고, �
 
 $T = { ... }$
 
-<img width="600" height="600" alt="goodnotes-screenshot-1767591289516" src="https://github.com/user-attachments/assets/eb72a21b-f596-4e32-9913-5ba462cdea45" />
+<img width="500" height="500" alt="goodnotes-screenshot-1767591289516" src="https://github.com/user-attachments/assets/eb72a21b-f596-4e32-9913-5ba462cdea45" />
 
 비용이 가장 적은 간선인 7-1을 선택한다. <br>
 
 $T = { (7,1) }$
 
-<img width="600" height="600" alt="goodnotes-screenshot-1767591366806" src="https://github.com/user-attachments/assets/fa6469e2-fe86-4427-b383-536b1c731458" />
+<img width="500" height="500" alt="goodnotes-screenshot-1767591366806" src="https://github.com/user-attachments/assets/fa6469e2-fe86-4427-b383-536b1c731458" />
 
 $T$에 존재하지 않은 간선들 중 cycle이 발생하지 않고 비용이 최소인 간선인 7-4를 선택하여준다. <br>
 
@@ -149,9 +155,9 @@ $T = { (7,1), (7,4) }$
 
 (최소 비용 간선 && acyclic) 조건을 준수하며 모든 노드가 연결될 때 까지 계속 진행하여준다.
 
-<img width="600" height="600" alt="goodnotes-screenshot-1767591447688" src="https://github.com/user-attachments/assets/5861cf1d-d24a-4709-8ef4-6210e4fcfb2a" />
-<img width="600" height="600" alt="goodnotes-screenshot-1767591565053" src="https://github.com/user-attachments/assets/7dd7202d-a49b-4c97-ad4d-5576c8c9fbe4" />
-<img width="600" height="600" alt="goodnotes-screenshot-1767591651559" src="https://github.com/user-attachments/assets/ec32a402-62ff-4230-8449-97a66b8bbc20" />
+<img width="500" height="500" alt="goodnotes-screenshot-1767591447688" src="https://github.com/user-attachments/assets/5861cf1d-d24a-4709-8ef4-6210e4fcfb2a" />
+<img width="500" height="500" alt="goodnotes-screenshot-1767591565053" src="https://github.com/user-attachments/assets/7dd7202d-a49b-4c97-ad4d-5576c8c9fbe4" />
+<img width="500" height="500" alt="goodnotes-screenshot-1767591651559" src="https://github.com/user-attachments/assets/ec32a402-62ff-4230-8449-97a66b8bbc20" />
 
 ### union-find 적용
 
@@ -159,6 +165,8 @@ $T = { (7,1), (7,4) }$
 이를 개선하기 위해선 union-find라는 자료구조를 사용하면 된다.
 
 https://velog.io/@xowls000/Union-find-Data-Structure-Disjoint-Set#kruskals-algorithm-using-uion-find
+
+---
 
 # 프림 알고리즘
 
@@ -174,23 +182,98 @@ https://velog.io/@xowls000/Union-find-Data-Structure-Disjoint-Set#kruskals-algor
 
 크루스칼에서 사용한 것과 동일한 그래프를 프림 알고리즘을 사용하여 MST를 구해보면
 
-<img width="1000" height="1220" alt="goodnotes-screenshot-1767598543604" src="https://github.com/user-attachments/assets/e5dd48e6-2a4f-48a1-a1d4-942465b03600" />
+<img width="500" height="500" alt="goodnotes-screenshot-1767598543604" src="https://github.com/user-attachments/assets/e5dd48e6-2a4f-48a1-a1d4-942465b03600" />
 
 시작 정점을 7로 하고, 정점과 연결된 간선들 중 최소비용을 선택하여 확장하고, cycle 생성을 주의하면 된다.
 
-<img width="600" height="600" alt="goodnotes-screenshot-1767598599431" src="https://github.com/user-attachments/assets/cfae9bad-fc94-4d86-835b-a52e3ca7e8f4" />
+<img width="500" height="500" alt="goodnotes-screenshot-1767598599431" src="https://github.com/user-attachments/assets/cfae9bad-fc94-4d86-835b-a52e3ca7e8f4" />
 
-<img width="600" height="600" alt="goodnotes-screenshot-1767598626853" src="https://github.com/user-attachments/assets/666240b3-af3d-4bba-8788-10546b283645" />
+<img width="500" height="500" alt="goodnotes-screenshot-1767598626853" src="https://github.com/user-attachments/assets/666240b3-af3d-4bba-8788-10546b283645" />
 
-<img width="600" height="600" alt="goodnotes-screenshot-1767598662812" src="https://github.com/user-attachments/assets/dbcc553a-6c82-4dd0-ad10-40af408f10f8" />
+<img width="500" height="500" alt="goodnotes-screenshot-1767598662812" src="https://github.com/user-attachments/assets/dbcc553a-6c82-4dd0-ad10-40af408f10f8" />
 
-<img width="600" height="600" alt="goodnotes-screenshot-1767598689519" src="https://github.com/user-attachments/assets/1d7cbfbd-6d28-45e1-9f05-4d1550a830c4" />
+<img width="500" height="500" alt="goodnotes-screenshot-1767598689519" src="https://github.com/user-attachments/assets/1d7cbfbd-6d28-45e1-9f05-4d1550a830c4" />
 
-<img width="600" height="600" alt="goodnotes-screenshot-1767598716350" src="https://github.com/user-attachments/assets/3edfc6ad-8c89-4639-8520-e13c954635ce" />
+<img width="500" height="500" alt="goodnotes-screenshot-1767598716350" src="https://github.com/user-attachments/assets/3edfc6ad-8c89-4639-8520-e13c954635ce" />
+
+## 구현
+
+```js
+// TODO
+```
+
+---
+
+# BFS
+
+그래프에서 탐색을 진행할 때 너비를 우선으로 탐색을 수행하는 알고리즘 <br>
+(맹목적인 탐색을 하고자할 때 사용할 수 있는 탐색 기법)
+
+## 특징
+
+- 큐를 사용하여 구현한다.
+- $O(V+E)$ 시간복잡도를 가진다.
+- 주요 정점을 레벨별로 탐색 -> 인접한 노드부터 넓게 탐색
+- 다익스트라, 칸, 프림과 같은 알고리즘은 BFS를 기반으로 함
+- 최단 경로 보장
+
+## 예시
+
+BFS의 알고리즘은 다음과 같다.
+
+1. 탐색 시작 노드를 큐에 삽입하고 방문 처리를 한다.
+
+2. 큐에서 노드를 꺼낸 뒤, 해당 노드의 인접 노드 중 방문하지 않은 노드를 모두 큐에 삽입하고 방문 처리를 한다.
+
+3. 큐가 빌 때까지 위 과정을 반복한다.
+
+<이미지>
+
+## 구현
+
+```js
+// TODO
+```
+
+---
+
+# DFS
+
+탐색을 진행할 때 보다 깊은 것을 우선적으로 탐색하는 알고리즘
+
+## 특징
+
+- 스택/재귀함수를 사용하여 구현한다.
+- $O(V+E)$ 시간복잡도를 가진다.
+- 주요 정점을 레벨별로 탐색 -> 한 길을 끝까지 깊게 탐색
+- 최단경로 보장 x
+- 경로의 특징 확인, 모든 경우의 수 탐색으로 사용
+
+## 예시
+
+DFS 알고리즘은 다음과 같다.
+
+1. 탐색 시작 노드를 스택에 넣고 방문 처리를 한다.
+
+2. 스택의 최상단 노드에 방문하지 않은 인접 노드가 있으면 그 노드를 스택에 넣고 방문 처리를 한다.
+
+3. 방문하지 않은 인접 노드가 없으면 스택에서 최상단 노드를 꺼낸다(백트래킹).
+
+4. 위 과정을 더 이상 수행할 수 없을 때까지 반복한다.
+
+<이미지>
+
+## 구현
+
+```js
+// TODO
+```
+
+---
 
 # 위상 정렬
 
-위상 정렬은 방향 비순환 그래프(DAG, Directed Acyclic Graph)에서 모든 방향 간선 $u \to v$에 대해 정점 $u$가 $v$보다 먼저 오도록 하는 선형 순서이다. 예위상 정렬은 방향 비순환 그래프(DAG, Directed A
+위상 정렬은 방향 비순환 그래프(DAG, Directed Acyclic Graph)에서 모든 방향 간선 $u \to v$에 대해 정점 $u$가 $v$보다 먼저 오도록 하는 선형 순서이다.
 
 ## 특징
 
@@ -200,7 +283,7 @@ https://velog.io/@xowls000/Union-find-Data-Structure-Disjoint-Set#kruskals-algor
 
 - 의존성 순서: 일반적인 DFS/BFS 탐색과 달리, 정점 간의 선후 관계(의존성)를 지키며 나열한다.
 
-## 예시
+## 예시1
 
 보통 수강신청을 예시로 많이 설명한다.
 
@@ -218,7 +301,7 @@ https://velog.io/@xowls000/Union-find-Data-Structure-Disjoint-Set#kruskals-algor
 
 즉, 순서만 맞게 정렬한다면 여러가지 답이 존재할 수 있다.
 
-## 구현
+## 예시2
 
 그러면 이를 구현하기 위해서 알고리즘 적으로 생각을 해보면, 진입 차수의 유무와 큐를 사용하면 된다.
 
