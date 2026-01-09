@@ -255,13 +255,13 @@
 
 ### 2.3.2. 동작 예
 
-<img width="350" height="278" alt="Image" src="https://github.com/user-attachments/assets/fbee8fd7-0fd7-43e0-9ebf-db2bae2164e3" />
+<img width="500" height="278" alt="Image" src="https://github.com/user-attachments/assets/fbee8fd7-0fd7-43e0-9ebf-db2bae2164e3" />
 
 위 그래프의 최소 신장 트리를 프림 알고리즘으로 구하는 과정이다. 시작 정점은 A라 한다.
 
 **Step 1)** A와 인접한 노드 B, C 중 C가 가장 가중치가 낮은 간선으로 연결되어 있으니 C를 집합에 넣고 AC 가중치를 더한다.
 
-<img src="https://github.com/user-attachments/assets/bd37ed98-ec3c-4ec7-9466-9808a652661f" width="350" />
+<img src="https://github.com/user-attachments/assets/bd37ed98-ec3c-4ec7-9466-9808a652661f" width="500" />
 
 
 | 노드 | [A, C] |
@@ -270,7 +270,7 @@
 
 **Step 2)** A, C와 인접한 노드 중 가장 가중치가 낮은 간선으로 연결되어 있는 B를 집합에 넣고 CB 가중치를 더한다.
 
-<img src="https://github.com/user-attachments/assets/c4799be6-29c5-46b1-8b55-0ecc9d40f72c" width="350" />
+<img src="https://github.com/user-attachments/assets/c4799be6-29c5-46b1-8b55-0ecc9d40f72c" width="500" />
 
 | 노드 | [A, C, B] |
 | :---: | :---: |
@@ -278,7 +278,7 @@
 
 **Step 3)** A, B, C와 인접한 노드 중 가장 가중치가 낮은 간선으로 연결되어 있는 D를 집합에 넣고 CD 가중치를 더한다.
 
-<img src="https://github.com/user-attachments/assets/b5ba22db-f995-4d09-96a4-2da6c28139d0" width="350" />
+<img src="https://github.com/user-attachments/assets/b5ba22db-f995-4d09-96a4-2da6c28139d0" width="500" />
 
 | 노드 | [A, C, B, D] |
 | :---: | :---: |
@@ -286,7 +286,7 @@
 
 **Step 4)** A, B, C, D와 인접한 노드 중 가장 가중치가 낮은 간선으로 연결된 E를 집합에 넣고 DE 가중치를 더한다.
 
-<img src="https://github.com/user-attachments/assets/d34cd19b-f3ac-4998-b6b6-3f654a56e171" width="350" />
+<img src="https://github.com/user-attachments/assets/d34cd19b-f3ac-4998-b6b6-3f654a56e171" width="500" />
 
 | 노드 | [A, C, B, D, E] |
 | :---: | :---: |
@@ -294,7 +294,7 @@
 
 **Step 5)** A, B, C, D, E와 인접한 노드 중 가장 가중치가 낮은 간선으로 연결된 F를 집합에 넣고 DF 가중치를 더한다.
 
-<img src="https://github.com/user-attachments/assets/773120ac-069e-4ef5-a826-a6ea33400e67" width="350" />
+<img src="https://github.com/user-attachments/assets/773120ac-069e-4ef5-a826-a6ea33400e67" width="500" />
 
 | 노드 | [A, C, B, D, E, F] |
 | :---: | :---: |
@@ -419,7 +419,7 @@
 
 ### 4.1.2. 동작 예
 
-<img width="400" height="697" alt="Image" src="https://github.com/user-attachments/assets/e2fd2a4e-ed07-4986-95c5-7b37ec79625c" />
+<img width="600" height="697" alt="Image" src="https://github.com/user-attachments/assets/e2fd2a4e-ed07-4986-95c5-7b37ec79625c" />
 
 - 시작 노드에서부터 한 경로를 따라 최대한 깊게 탐색한 후, 다른 경로를 탐색한다.
 
@@ -439,7 +439,7 @@
 
 ### 4.2.2. 동작 예
 
-<img width="400" height="1120" alt="Image" src="https://github.com/user-attachments/assets/d61be28b-c561-4db3-aba6-c6121d8c6be9" />
+<img width="600" height="1120" alt="Image" src="https://github.com/user-attachments/assets/d61be28b-c561-4db3-aba6-c6121d8c6be9" />
 
 - 깊이가 1인 모든 노드를 방문한 후 깊이가 2인 모든  노드를, 그 다음에는 깊이가 3인 모든 노드를 방문하는 식으로 계속 방문하다가 더 이상 방문할 곳이 없으면 탐색을 마친다.
 
