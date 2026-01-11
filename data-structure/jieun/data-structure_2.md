@@ -6,8 +6,26 @@
 - 각 노드가 최대 두 개의 자식 노드를 갖는 트리이다.
 - 각 노드는 자식이 0개, 1개, 2개가 있을 수 있다.
 - 같은 루트에 같은 자식 노드를 가지고 있어도 자식 노드이 위치가 각각 왼쪽과 오른쪽으로 다르다면 두 트리는 다른 트리이다.
+- 자료를 효율적으로 정렬하고 탐색하는 데 매우 유용하다.
 
-## 1.2. Binary Tree 종류
+## 1.2. Binary Tree의 특징
+- **제한된 자식 노드의 수**: 각 노드가 최대 두 개의 자식 노드를 가질 수 있다.
+- **재귀적 구조**: 재귀적 구조를 가지며, 하위 트리들도 하나의 이진 트리로 취급된다.
+- **균형성**: 노드가 어느 한쪽에 치우치지 않고 균형적으로 분포되는 것이 이상적이다.
+    - 균형 잡힌 트리(Balanced Binary Tree)는 탐색, 삽입, 삭제와 같은 연산에서 **O(log n)**의 시간 복잡도를 가진다.
+
+## 1.4. Binary Tree의 용도
+- **이진 탐색 트리(Binary Search Tree, BST)**: 각 노드가 왼쪽 자식은 부모보다 작은 값, 오른쪽 자식은 부모보다 큰 값을 가지도록 구성된 트리이다.
+- **힙(Heap)**: 최대값 또는 최소값을 빠르게 찾기 위해 사용하는 완전 이진 트리이다. 주로 우선순위 큐 및 최단 경로 탐색에 활용된다.
+- **트리 기반 검색 알고리즘**: 이진 탐색, 트리 순회 알고리즘(Pre-order, In-oreder, Post-order) 등에서도 매우 유용하게 사용된다.
+
+## 1.3. Binary Tree 종류
+
+- **Perfect Bianry Tree (포화 이진 트리)**
+- **Complete Binary Tree (완전 이진 트리)**
+- **Full Binary Tree (전 이진 트리)**
+- **Skewed Binary Tree (편향 트리)**
+- **Balanced Binary Tree (균형 이진 트리)**
 
 #### 포화 이진 트리(Perfect Binary Tree)
 
@@ -15,7 +33,6 @@
 
 - 모든 레벨이 노드로 꽉 차 있는 트리이다.
 - 모든 리프 노드가 동일한 깊이를 가진다.
-- 트리의 높이가 `h`일 때, 노드의 총 개수는 `2^h - 1` 이다.
 - 데이터의 탐색, 삽입, 삭제 연산이 **O(log n)**의 성능을 유지한다.
 
 #### 완전 이진 트리(Complete Binary Tree)
@@ -24,6 +41,9 @@
 
 - 마지막 레벨을 제외한 모든 레벨이 완전히 채워진 트리이다.
 - 노드는 왼쪽에서 오른쪽으로 채워져야 한다.
+- 배열의 완전 이진 트리 인덱스 계산법
+    - 왼쪽 자식의 인덱스 `2 * i + 1`
+    - 오른쪽 자식의 인덱스 `2 * i + 2`
 
 #### 전 이진 트리(Full Binary Tree)
 
@@ -48,17 +68,31 @@
 
 - 트리의 모든 서브트리들이 균형을 이루며, 높이 차이가 일정한 한계를 넘지 않도록 유지된다
 - 대표적으로 AVL Tree와 Red-Black Tree가 있다.
-- 삽입과 삭제 후에도 자동으로 균형으로 조정하여 **O(log n)**성능을 보장한다.
+- 삽입과 삭제 후에도 자동으로 균형을 조정하여 **O(log n)**성능을 보장한다.
 
-## 1.3. Binary Tree의 특징
-- **자식 노드의 수 제한**: 각 노드가 최대 두 개의 자식 노드를 가질 수 있다.
-- **재귀적 구조**: 재귀적 구조를 가지며, 하위 트리들도 하나의 이진 트리로 취급된다.
-- **균형성**: 노드가 어느 한쪽에 치우치지 않고 균형적으로 분포되어 있다.
+## 1.4. 이진 트리 순회(Traversal) 알고리즘
+트리의 모든 노드를 방문하는 다양한 방식의 순회(Traversal) 알고리즘이 존재한다. 이 순회 알고리즘은 트리의 구조에 따라 데이터를 탐색하고 처리하는 중요한 역할을 한다.
 
-## 1.4. Binary Tree의 용도
-- **이진 탐색 트리(Binary Search Tree, BST)**: 각 노드가 왼쪽 자식은 부모보다 작은 값, 오른쪽 자식은 부모보다 큰 값을 가지도록 구성된 트리이다.
-- **힙(Heap)**: 최대값 또는 최소값을 빠르게 찾기 위해 사용하는 완전 이진 트리이다. 주로 우선순위 큐 및 최단 경로 탐색에 활용된다.
-- **트리 기반 검색 알고리즘**: 이진 탐색, 트리 순회 알고리즘(Pre-order, In-oreder, Post-order) 등에서도 매우 유용하게 사용된다.
+- 전위 순회(Pre-order Traversal)
+- 중위 순회(In-order Traversal)
+- 후위 순회(Post-order Traversal)
+- 레벨 순서 순회(Level-order Traversal)
+
+#### 전위 순회(Pre-order Traversal)
+
+
+
+- 부모(P) -> 왼쪽 자식(L) -> 오른쪽 자식(R) 순으로 탐색한다.
+
+#### 중위 순회(In-order Traversal)
+
+- 왼쪽 자식(L) -> 부모(P) -> 오른쪽 자식(R) 순으로 탐색한다.
+
+#### 후위 순회(Post-order Traversal)
+- 왼쪽 자식(L) -> 오른쪽 자식(R) -> 부모(P) 순으로 탐색한다.
+
+#### 레벨 순서 순회(Level-order Traversal) 
+- 노드의 깊이(레벨)에 따라 순서대로 방문하는 방식이다.
 
 * * *
 
@@ -331,6 +365,10 @@ https://velog.io/@dankj1991/Tree-Red-Black-Tree-Part1 <br>
 
 **B Tree**
 https://code-lab1.tistory.com/217 <br>
+
+**Multidimensional Search Tree**
+https://velog.io/@xowls000/Multidimensional-Search-Tree <br>
+https://developer-caleb.tistory.com/83 <br>
 
 **Graph**
 https://gmlwjd9405.github.io/2018/08/13/data-structure-graph.html <br>
