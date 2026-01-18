@@ -68,11 +68,72 @@ UNIX에서는 `fork()` system call로 프로세스를 생성할 수 있고, 이�
 
 <img width="487" height="214" alt="image" src="https://github.com/user-attachments/assets/fd73a664-1039-48cc-a719-bc029f233945" />
 
-anyway
 프로세스의 running이 종료되면, wait하거나, terminate 되는데 이때 `exit` system call을 통해 스스로 종료한다. <br>
 **하지만 job이 끝나도 종료되지 않은 프로세스를 zombie process**라고 하며, <br>
 A parent process can cut off a child process with abort system call 이기 때문에 when the parent quits되어도 **자식은 종료되지 않은 orphan process** 가 존재한다.
 
 ---
 
+# Thread
+
+**정의:** 프로세스가 시스템 자원 전체를 아우르는 단위라면, 스레드는 그 안에서 오직 CPU의 실행 흐름만을 추상화한 것이다. <br>
+즉, 프로세스 내부의 작업 단위이며 하나의 프로세스는 하나 이상의 스레드를 가지고 실질적인 연산과 로직 수행은 스레드 단위로 이루어진다.
+
+## Process vs Thread
+
+- Process: CPU, 메모리(주소 공간), 파일 시스템 등 모든 시스템 자원을 포함하는 추상화 모델
+
+- Thread: 프로세스가 확보한 자원 중 메모리 공간(Address Space)과 시스템 자원들을 공유하며, 오직 CPU 상태(Program Counter, Registers, Stack)만을 독립적으로 가진다.
+
+- 구조적 차이:
+  - 공유 영역: Code(명령어), Data(전역 변수), Heap(동적 할당) 영역은 같은 프로세스 내의 모든 스레드가 공유
+  - 독립 영역: 각 스레드는 독립적인 실행 경로를 유지하기 위해 자신만의 Stack과 레지스터 상태를 가진다.
+
+## Multithreading Mechanism
+
+<img width="574" height="286" alt="image" src="https://github.com/user-attachments/assets/d6739e48-4dc5-4af1-8658-ed19554b295d" />
+
+- 스레드 간의 Context Switch은 프로세스 간의 교환보다 오버헤드가 적다. <br>
+  (메모리 주소 공간을 그대로 둔 채 CPU 상태만 바꾸면 되기 때문)
+
+- 스레드 역시 실행 중에 하드웨어 자원이 필요하면 System Call을 호출하며, 이 과정에서 User-mode에서 Kernel-mode로의 전환이 발생
+
+---
+
 # Dual Mode Operation: User Mode & Kernel Mode
+사용자 프로그램이 하드웨어(디스크, 네트워크 등)에 직접 접근하거나 메모리의 임의 영역을 수정하여 시스템 전체에 문제를 일으키는 것을 방지하기 위해 Dual Mode를 사용한다.
+
+### User Mode
+
+응용 프로그램이 실행되는 일반적인 모드로, 하드웨어 자원에 직접 접근하는 Privileged Instructions의 실행이 금지된다. <br>
+(실행하려 하면 하드웨어 수준에서 Exception을 발생)
+
+### Kernel Mode
+
+Privileged Instructions가 실행 가능하여 모든 하드웨어 장치 제어, 메모리 관리, 입출력(I/O) 수행 등 시스템의 모든 자원에 접근 가능한 모드.
+
+### System Call
+
+유저 모드 프로그램이 커널의 서비스를 받기 위해 사용하는 유일한 통로로 Trap을 통해 동작한다.
+
+1. 프로그램이 특정 Trap 명령을 실행
+2. 하드웨어는 현재 상태를 커널 스택에 저장하고 Kernel-mode로 전환
+3. 미리 정의된 Trap Handler를 통해 요청된 작업을 수행
+4. 작업 완료 후 return-from-trap을 통해 유저 모드로 복귀
+
+<img width="397" height="433" alt="image" src="https://github.com/user-attachments/assets/3ecf9d38-5d37-477a-ba05-550d0c4f7090" />
+
+이러한 System Call을 통해 **Context Switch**가 이루어 진다.
+
+# Context Switch
+
+**정의:** 실행중인 process 혹은 thread를 변경하는 작업을 통칭한다.
+
+하나의 프로세스의 작업이 종료되면 다음 프로세스를 실행해야하는데 이때 context switch가 사용된다. <br>
+(Scheduling과 같은 상황에서도 발생 하지만 그건 Scheduling에서 다룰 예정)
+
+현재 실행 중인 프로세스의 레지스터 상태를 PCB에 저장하고, 다음 실행할 프로세스의 상태를 복구하는 과정이 커널 모드에서 안전하게 수행한다.
+
+---
+
+# Scheduling
