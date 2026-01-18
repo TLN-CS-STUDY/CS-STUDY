@@ -47,3 +47,32 @@ ex) Compiler, Linker, Loader, Shell, Service Daemons, 등.
 ---
 
 # Process
+
+**정의:** 프로그램의 실행 중인 인스턴스로 실행 중인 인스턴스에게 주어진 모든 정보와 자원을 포함하는 커널 객체를 뜻한다. <br>
+**구성 요소: 크게 Memory Image와 PCB로 나뉜다.**
+- Memory Image
+  - Code, Data, Heap, Stack Section...etc
+- PCB
+  - PID, Process State, PC, CPU Registers...etc
+
+## life cycle of process
+
+UNIX에서는 `fork()` system call로 프로세스를 생성할 수 있고, 이렇게 생성된 프로세스의 life cycle은 다음과 같다.
+
+<img width="342" height="370" alt="image" src="https://github.com/user-attachments/assets/f843d8f1-03cb-44cb-a46c-7f5eb79be1e9" />
+<img width="335" height="211" alt="image" src="https://github.com/user-attachments/assets/7d537247-d980-4f18-8684-72581f03f1a5" />
+
+각 프로세스는 위와 같은 Process State를 가지게 된다. <br>
+
+또는 아래와 같은 표현으로 process의 life cycle을 표현하기도 한다.
+
+<img width="487" height="214" alt="image" src="https://github.com/user-attachments/assets/fd73a664-1039-48cc-a719-bc029f233945" />
+
+anyway
+프로세스의 running이 종료되면, wait하거나, terminate 되는데 이때 `exit` system call을 통해 스스로 종료한다. <br>
+**하지만 job이 끝나도 종료되지 않은 프로세스를 zombie process**라고 하며, <br>
+A parent process can cut off a child process with abort system call 이기 때문에 when the parent quits되어도 **자식은 종료되지 않은 orphan process** 가 존재한다.
+
+---
+
+# Dual Mode Operation: User Mode & Kernel Mode
