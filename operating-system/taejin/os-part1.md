@@ -137,3 +137,40 @@ Privileged Instructions가 실행 가능하여 모든 하드웨어 장치 제어
 ---
 
 # Scheduling
+
+Multi-programming을 위해 한정된 CPU 자원을 여러 프로세스에 효율적으로 할당하는 스케줄링이 꼭 필요하다.
+
+**Scheduling Policy**
+- Dispatch Order: Ready Queue에 있는 프로세스 중 어떤 순서로 CPU를 할당할 것인가?
+- Time Slice (Quantum): 한 번 할당받은 프로세스에 얼마만큼의 실행 시간을 부여할 것인가?
+
+스케줄러은 위 두 질문에 대해 답해야한다.
+
+**Workload**
+시스템에서 실행 중인 프로세스들의 Characteristics을 의미한다. <br>
+스케줄링 알고리즘의 효율성은 이 워크로드를 어떻게 정의하느냐에 따라 달라짐
+
+## Scheduling Metrics
+
+어떤 스케줄링 알고리즘을 평가하는 방법은 두 가지 지표로 이루어진다.
+
+지표|	정의|	성격|	수식
+|:---:|:---:|:---:|:---:
+Turnaround Time|	작업이 완료된 시점과 도착한 시점의 차이|	Performance 위주|	$T_turnaround ​= T_completion ​− T_arrival​$
+Response Time|	작업이 도착한 후 처음으로 스케줄링(실행)될 때까지의 차이|	Fairness가 기준 / 대화형 시스템(interaction이 빈번한 시스템에서)|	$T_response​ = T_first_run ​− T_arrival​$
+
+## First In First Out (FIFO) Scheduling Policy
+
+## Shortest Job First (SJF) Scheduling Policy
+
+## Shortest Time-to-completion First (STCF)
+
+## Round Robin (RR) Scheduling Policy
+
+## MLFQ
+
+## Lottery Scheduler
+
+## Stride Scheduling
+
+## The Linux Completely Fair Scheduler (CFS)
