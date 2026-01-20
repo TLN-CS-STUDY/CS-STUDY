@@ -160,17 +160,53 @@ Turnaround Time|	작업이 완료된 시점과 도착한 시점의 차이|	Perfo
 Response Time|	작업이 도착한 후 처음으로 스케줄링(실행)될 때까지의 차이|	Fairness가 기준 / 대화형 시스템(interaction이 빈번한 시스템에서)|	$T_response​ = T_first_run ​− T_arrival​$
 
 ## First In First Out (FIFO) Scheduling Policy
+가장 먼저 도착한 프로세스를 먼저 처리하는 Non-preemptive 방식
+
+- 장점: 구현이 매우 단순합니다.
+- 단점 (Convoy Effect 발생): 실행 시간이 긴 프로세스가 앞에 있으면, 뒤에 있는 짧은 프로세스들의 대기 시간이 급격히 길어진다.
 
 ## Shortest Job First (SJF) Scheduling Policy
+실행 시간이 가장 짧은 프로세스를 먼저 실행하는 방식
 
+- 장점: 모든 프로세스가 동시에 도착한다는 가정하에 Average Turnaround Time을 최소화한다.
+- 단점: 비선점 방식이라 실행 중인 긴 프로세스를 끊지 못하며, 프로세스의 실행 시간을 미리 알아야 한다는 비현실적인 면이 존재
+  
 ## Shortest Time-to-completion First (STCF)
+SJF에 Preemptive 기능을 추가한 버전
+
+작동 방식: 새로운 프로세스가 도착했을 때, 현재 실행 중인 프로세스의 남은 시간보다 새 프로세스의 실행 시간이 짧으면 CPU를 뺏어 할당합니다.
+
+- 장점: 반환 시간 측면에서 매우 효율적
+- 단점: SJF 동일
 
 ## Round Robin (RR) Scheduling Policy
+각 프로세스에 동일한 Time Slice를 부여하고 순환하며 실행시킨다.
+
+- 장점: Response Time이 매우 우수하여 대화형(interaction) 시스템에 적합
+- 단점: 타임 슬라이스가 너무 짧으면 컨텍스트 스위칭 오버헤드가 커지고, 너무 길면 FIFO와 다를 바 없게 된다.
 
 ## MLFQ
+CPU Bound 프로세스와 I/O Bound 프로세스가 섞여 있는 실제 환경을 위해 고안된 가장 현실적인 스케줄러입니다.
+
+핵심: 프로세스의 우선순위를 동적으로 조정합니다. I/O를 자주 발생시키면 우선순위를 유지하고, CPU를 오래 사용하면 우선순위를 낮춥니다.
+
+- 단점: 어떤 프로세스는 CPU를 할당받지 못하는 Starvation 발생
+- Starvation 해결: 우선순위가 낮은 프로세스가 영원히 실행되지 않는 것을 막기 위해 일정 시간마다 모든 프로세스를 최상위 큐로 올리는 Priority Boost를 사용합니다.
 
 ## Lottery Scheduler
+비례 배분(Proportional Share) 방식의 확률적 스케줄러입니다.
+
+메커니즘: 각 프로세스에 '티켓'을 나눠주고, 추첨을 통해 당첨된 프로세스에 CPU를 할당합니다.
+
+특징: 구현이 단순하고, 티켓 수를 조절함으로써 프로세스 간의 자원 점유율을 유연하게 조정할 수 있습니다.
 
 ## Stride Scheduling
+Lottery Scheduler의 확률적 불안정성(짧은 시간 동안은 할당 비율이 안 맞을 수 있음)을 해결한 결정론적(Deterministic) 방식입니다.
+
+Stride: $1 / \text{티켓 수}$에 비례하는 값입니다.
+
+작동: 각 프로세스는 실행될 때마다 자신의 pass 값을 stride만큼 증가시키며, 항상 pass 값이 가장 작은 프로세스를 선택합니다.
 
 ## The Linux Completely Fair Scheduler (CFS)
+현재 리눅스 커널의 기본 스케줄러입니다.vruntime (Virtual Runtime): 프로세스가 실행된 시간을 가중치에 따라 기록합니다.
+CFS는 이 vruntime이 가장 적은 프로세스를 선택하여 모든 프로세스에 CPU 시간을 공평하게 배분하려 노력합니다.자료구조: 효율적인 탐색을 위해 Red-Black Tree를 사용하여 다음 실행할 프로세스를 $O(\log N)$ 시간 복잡도로 찾아냅니다.
