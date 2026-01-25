@@ -24,6 +24,8 @@ Task가 동시에 수행되면서 **동기화 문제**가 발생할 수 있다.
 ## 동기화 문제
 동기화 문제는 여러 작업이 동시에 공유된 자원에 접근하려 할 때 발생한다. 멀티코어뿐만 아니라 싱글코어에서 동시에 동작하는 Task 사이에서도 동기화 문제가 발생한다. <br>
 
+* * *
+
 # 2. Synchronization
 ## Synchronization
 - 다중 프로그래밍 시스템
@@ -66,21 +68,21 @@ Critical Section 문제를 해결하기 위해서는 아래 세 가지 요구 �
 3. 한정된 대기(Bounded Waiting): 프로세스가 Critical Section에 진입하려는 요청을 한 후부터 그 요청이 허용될 때까지 다른 프로세스들이 Critical Section에 진입하는 횟수에 한계가 있어야 한다.
 
 ## Synchronization Algorithms
-### Algorithm 1
+### [Algorithm 1]
 현재 CS에 들어갈 프로세스가 어떤 프로세스인지를 한 변수로 나타내어 일치하는 프로세스만 진입하도록 하는 단순한 방식이다. <br>
 
 <img width="653" height="435" alt="Image" src="https://github.com/user-attachments/assets/a546fceb-9f1d-4e0d-a273-288a0b5a2cb8" />
 
 이 방식은 Mutual Exclusion은 만족하지만 Progress에 만족하지 못한다. P_i가 CS에 진입하기 전에 죽어버리거나 한 Process가 두 번 연속 CS에 진입하지 못하는 경우에는 CS에 아무런 프로세스가 존재하지 않게 된다.
 
-### Algorithm 2
+### [Algorithm 2]
 특정 프로세스가 CS에 진입할 준비가 되었다는 것을 나타내는 변수를 두어, 다른 프로세스가 CS에 진입하려고 한다면 현재 프로세스는 기다리는 방법이다.
 
 <img width="773" height="526" alt="Image" src="https://github.com/user-attachments/assets/567fb400-7587-4671-a303-e8285c5192cb" />
 
 이 방식도 Mutual Exclusion은 만족하지만 Progress, Bounded Waiting에 만족하지 못한다. 두 프로세스가 flag=true를 수행하고 나면 두 프로세스 모두 무한히 CS에 진입하지 못하고 기다리는 상황이 발생하게 된다.
 
-### Algorithm 3 (Peterson's Algorithm)
+### [Algorithm 3] (Peterson's Algorithm)
 Peterson's Algorithm은 이전의 Algorithm 1과 2를 합쳐놓은 개념이다. turn과 flag 변수를 같이 사용한다.
 
 <img width="474" height="397" alt="Image" src="https://github.com/user-attachments/assets/fbcd8e01-fbd7-46b7-9f05-b180874b4973" />
@@ -143,7 +145,30 @@ signal(mutex);
 
 세마포어는 mutex의 특별한 버전으로 공유자원이 n개 일 때(n >= 1)를 말하는 것이라고 볼 수 있다.
 
+## Monitor
+세마포어의 가장 큰 문제는 잘못된 사용으로 인해 임계구역이 보호받지 못한다는 것이다. 
+
+<img width="1000" height="445" alt="Image" src="https://github.com/user-attachments/assets/d7e463f6-c1be-4a79-88e8-56b25fc19561" />
+
+**세마포어의 잘못된 사용으로 문제가 발생한 경우**
+1. 세마포어를 사용하지 않고 CS에 들어갈 때, CS가 부호받지 못한다. 즉, Mutual Exclusion이 보장되지 않아 Race Condition이 발생한다.
+2. P()만 두 번 사용하고 V()를 사용하지 않아서 wake_up 신호가 발생하지 않은 경우 무한대기 상태가 발생한다.
+3. P()와 V()를 반대로 사용하여 Mutual Exclusion이 보장되지 않는다.
+
+만약, 공유 자원을 사용할 때 모든 프로세스가 세마포어 알고리즘을 따른다면 굳이 P(), V()를 사용할 필요없이 자동으로 처리하도록 하면 된다. 이를 실제로 구현하는 것이 **Monitor**이다. <br>
+
+모니터는 공유 자원을 내부적으로 숨기고 공유 자원에 접근하기 위한 인터페이스만 제공함으로써 자원을 보호하고 프로세스 간에 동기화를 시킨다.
+
+<img width="1000" height="376" alt="Image" src="https://github.com/user-attachments/assets/0206cfb2-0fe7-4a44-a2a1-b4f168bb6a1d" />
+
+보호할 자원을 CS 구역으로 숨기고 CS에서 작업할 수 있는 인터페이스만 제공하여 자원을 보호한다.
+
+**Monitor의 특징**
+1. CS로 지정된 변수나 자원에 접근하고자 하는 프로세스는 직접 P(), V()를 사용하지 않고 모니터에 작업을 요청한다.
+2. 모니터는 요청받은 작업을 모니터 큐에 저장한 후 순서대로 처리하고 그 결과만 해당 프로세스에 알려준다.
+
+
 * * *
 
-**동시성** <br>
 https://spacebike.tistory.com/22 <br>
+https://velog.io/@chappi/OS%EB%8A%94-%ED%95%A0%EA%BB%80%EB%8D%B0-%ED%95%B5%EC%8B%AC%EB%A7%8C-%ED%95%A9%EB%8B%88%EB%8B%A4.-8%ED%8E%B8-Critical-section-%EC%9E%84%EA%B3%84-%EA%B5%AC%EC%97%AD2-mutex-semaphore-monitor-condition-variable <br>
